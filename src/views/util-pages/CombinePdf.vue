@@ -181,10 +181,10 @@ export default {
         font-size: 13px;
         font-weight: 700;
         color: var(--accent-primary);
-        background: rgba(56, 189, 248, 0.1);
+        background: rgba(16, 185, 129, 0.1);
         padding: 6px 12px;
         border-radius: 20px;
-        border: 1px solid rgba(56, 189, 248, 0.25);
+        border: 1px solid rgba(16, 185, 129, 0.25);
       }
     }
   }
@@ -218,7 +218,7 @@ export default {
   padding: 20px;
   width: 100%;
   min-height: 200px;
-  background: rgba(30, 41, 59, 0.15);
+  background: rgba(10, 26, 20, 0.25);
   display: flex;
   gap: 10px;
   color: var(--text-primary);
@@ -237,12 +237,12 @@ export default {
     padding: 0 20px;
     border-radius: 10px;
     border: 1px solid var(--border-color);
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(10, 20, 16, 0.45);
     transition: all 0.2s ease;
     
     &:hover {
       border-color: var(--border-hover);
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(10, 20, 16, 0.75);
       transform: translateX(4px);
     }
     
@@ -272,7 +272,7 @@ export default {
   
   .ghost {
     opacity: 0.4;
-    background: rgba(99, 102, 241, 0.1) !important;
+    background: rgba(16, 185, 129, 0.1) !important;
     border: 1px dashed var(--accent-primary) !important;
   }
 }

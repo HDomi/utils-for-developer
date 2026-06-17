@@ -55,15 +55,15 @@ export default {
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
 
 :root {
-  --bg-primary: #090d16;
-  --bg-secondary: #0f172a;
-  --bg-panel: rgba(30, 41, 59, 0.45);
+  --bg-primary: #050b08;
+  --bg-secondary: #0a1410;
+  --bg-panel: rgba(10, 26, 20, 0.45);
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(56, 189, 248, 0.4);
+  --border-hover: rgba(16, 185, 129, 0.4);
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --accent-primary: #38bdf8;
-  --accent-secondary: #6366f1;
+  --accent-primary: #10b981;
+  --accent-secondary: #059669;
   --accent-success: #10b981;
   --accent-error: #ef4444;
   --accent-success-bg: rgba(16, 185, 129, 0.15);
@@ -111,14 +111,14 @@ p {
 input[type="text"], input[type="number"], textarea, select {
   outline: none;
   border: 1px solid var(--border-color);
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(10, 20, 16, 0.6);
   color: var(--text-primary);
   border-radius: 8px;
   font-family: inherit;
   transition: all 0.2s ease;
   &:focus {
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
   }
 }
 .hiddenScroll {
@@ -169,7 +169,7 @@ input[type="text"], input[type="number"], textarea, select {
 }
 .blue-btn {
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent-secondary) 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, var(--accent-secondary) 0%, #047857 100%);
   color: #fff;
   padding: 10px 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -177,7 +177,7 @@ input[type="text"], input[type="number"], textarea, select {
   font-weight: 600;
   font-size: 14px;
   letter-spacing: -0.2px;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
@@ -185,8 +185,8 @@ input[type="text"], input[type="number"], textarea, select {
   gap: 6px;
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    background: linear-gradient(135deg, #047857 0%, #065f46 100%);
   }
   &:active {
     transform: translateY(1px);

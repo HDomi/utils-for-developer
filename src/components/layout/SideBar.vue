@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-wrap" :class="{ active: panelState }">
-    <router-link to="/utils">
+    <router-link to="/">
       <img class="side-main-icon" src="../../assets/domi_logo_color.svg" />
     </router-link>
     <div class="side-item-wrap">
@@ -15,9 +15,6 @@
           </div>
           <div>{{ item.name }}</div>
         </div>
-      </router-link>
-      <router-link to="/about" style="margin-top: 20px">
-        <div class="item-title">About</div>
       </router-link>
     </div>
   </div>
@@ -64,7 +61,7 @@ export default {
   width: 280px;
   min-width: 280px;
   height: 100%;
-  background: #0b111e;
+  background: #06120e;
   border-right: 1px solid var(--border-color);
   transition: all 0.3s ease;
   display: flex;
@@ -82,7 +79,7 @@ export default {
   img.side-main-icon {
     width: 130px;
     margin: 30px 0 40px 0;
-    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3));
     transition: transform 0.3s ease;
     &:hover {
       transform: scale(1.05);
@@ -111,12 +108,12 @@ export default {
         transform: translateX(4px);
       }
       &.router-link-active {
-        background: rgba(99, 102, 241, 0.12);
+        background: rgba(16, 185, 129, 0.12);
         color: var(--text-primary);
-        border: 1px solid rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(16, 185, 129, 0.2);
         .icon-wrap {
-          background: rgba(99, 102, 241, 0.2);
-          border-color: rgba(99, 102, 241, 0.4);
+          background: rgba(16, 185, 129, 0.2);
+          border-color: rgba(16, 185, 129, 0.4);
           img.side-icon {
             filter: drop-shadow(0 0 6px var(--accent-primary));
           }

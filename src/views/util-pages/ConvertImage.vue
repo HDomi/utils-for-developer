@@ -297,7 +297,7 @@ export default {
       padding: 0 16px;
       width: 100%;
       height: 38px;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(10, 20, 16, 0.6);
       color: var(--text-primary);
       font-weight: 600;
       border: 1px solid var(--border-color);

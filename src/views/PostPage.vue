@@ -63,7 +63,7 @@ export default {
   methods: {
     goList() {
       this.$router.push({
-        path: `/utils`,
+        path: `/`,
       });
     },
     loadingHandler(value: boolean) {

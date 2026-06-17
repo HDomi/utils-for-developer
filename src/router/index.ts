@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomePage from "../views/HomePage.vue";
-import AboutPage from "../views/AboutPage.vue";
 import PostPage from "../views/PostPage.vue";
 //Utils
 import DumpTester from "../views/util-pages/DumpTester.vue";
@@ -12,18 +11,9 @@ import OnlineJS from "../views/util-pages/OnlineJS.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/utils",
-  },
-  {
-    path: "/utils",
     name: "home",
     component: HomePage,
     props: true,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: AboutPage,
   },
   {
     path: "/posting",
@@ -31,27 +21,27 @@ const routes: Array<RouteRecordRaw> = [
     component: PostPage,
   },
   {
-    path: "/utils/dumpTester",
+    path: "/dumpTester",
     name: "Dump Tester",
     component: DumpTester,
   },
   {
-    path: "/utils/jsonParser",
+    path: "/jsonParser",
     name: "Json Parser",
     component: JsonParser,
   },
   {
-    path: "/utils/convertImage",
+    path: "/convertImage",
     name: "Convert Image",
     component: ConvertImage,
   },
   {
-    path: "/utils/combinePdf",
+    path: "/combinePdf",
     name: "Combine PDF",
     component: CombinePdf,
   },
   {
-    path: "/utils/onlineJS",
+    path: "/onlineJS",
     name: "Online JS",
     component: OnlineJS,
   },

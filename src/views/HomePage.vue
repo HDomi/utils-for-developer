@@ -1,6 +1,5 @@
 <template>
   <div class="page-wrap">
-    <p class="main-tit">Utils</p>
     <div v-if="searchUtilList.length" class="util-list-wrap">
       <div
         class="util-list-item-wrap"
@@ -97,13 +96,17 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   padding: 40px;
-  
+
   .blue-wrap {
     width: 100%;
     height: 200px;
     border-radius: 16px;
     margin-bottom: 30px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(56, 189, 248, 0.2) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(5, 150, 105, 0.2) 0%,
+      rgba(16, 185, 129, 0.2) 100%
+    );
     border: 1px solid var(--border-color);
     color: #fff;
     padding: 30px;
@@ -127,7 +130,7 @@ export default {
       width: 220px;
       height: 220px;
       opacity: 0.85;
-      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
     }
   }
 
@@ -136,7 +139,7 @@ export default {
     gap: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    
+
     .no-list {
       font-size: 16px;
       font-weight: 600;
@@ -145,11 +148,11 @@ export default {
       padding: 40px 0;
       text-align: center;
     }
-    
+
     .util-list-item-wrap {
       width: 100%;
       height: 100%;
-      
+
       .util-item {
         background: var(--bg-panel);
         border: 1px solid var(--border-color);
@@ -166,33 +169,34 @@ export default {
         -webkit-backdrop-filter: blur(12px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        
+
         &:hover {
           transform: translateY(-6px);
           border-color: var(--border-hover);
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.15);
-          
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(16, 185, 129, 0.15);
+
           img {
             transform: scale(1.08) rotate(3deg);
-            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
+            filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.45));
           }
         }
-        
+
         img {
           width: 48px;
           height: 48px;
           margin-bottom: 20px;
-          filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.2));
+          filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.2));
           transition: all 0.3s ease;
         }
-        
+
         .item-name {
           font-size: 17px;
           font-weight: 700;
           color: var(--text-primary);
           margin-bottom: 6px;
         }
-        
+
         .item-desc {
           font-size: 13px;
           color: var(--text-secondary);

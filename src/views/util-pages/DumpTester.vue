@@ -488,16 +488,16 @@ export default {
     font-size: 13px;
     padding: 0 16px;
     height: 36px;
-    background: linear-gradient(135deg, var(--accent-secondary) 0%, #4f46e5 100%);
+    background: linear-gradient(135deg, var(--accent-secondary) 0%, #047857 100%);
     color: #fff;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
     transition: all 0.2s ease;
     line-height: 1;
     &:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
     }
   }
   input[type="file"] {
@@ -520,7 +520,7 @@ export default {
     height: 36px;
     border: 1px solid var(--border-color);
     padding: 0 16px;
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(10, 20, 16, 0.6);
     border-radius: 20px;
     color: var(--text-primary);
     font-size: 13px;
@@ -611,10 +611,10 @@ export default {
   font-size: 14px;
   font-weight: 700;
   color: var(--accent-primary);
-  background: rgba(56, 189, 248, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   padding: 6px 16px;
   border-radius: 20px;
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 .example-wrap {
   width: 100%;
@@ -673,7 +673,7 @@ export default {
   padding: 16px 20px;
   margin: 0 0 12px 0;
   border: 1px solid var(--border-color);
-  background: rgba(30, 41, 59, 0.2);
+  background: rgba(10, 26, 20, 0.35);
   border-radius: 12px;
   transition: all 0.2s ease;
   gap: 12px;

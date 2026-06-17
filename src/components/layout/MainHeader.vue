@@ -1,6 +1,6 @@
 <template>
   <div class="header-wrap">
-    <router-link to="/utils">
+    <router-link to="/">
       <div class="header-title">
         <img src="../../assets/domi_logo_color.svg" />
         <div>{{ headerTitle }}</div>
@@ -70,7 +70,7 @@ export default {
   padding: 16px 30px;
   display: flex;
   align-items: center;
-  background: rgba(9, 13, 22, 0.45);
+  background: rgba(10, 26, 20, 0.35);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: var(--text-primary);
@@ -84,7 +84,7 @@ export default {
     img {
       width: 32px;
       margin-right: 12px;
-      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+      filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.3));
     }
     font-size: 18px;
     font-weight: 700;
@@ -99,7 +99,7 @@ export default {
       border-radius: 20px;
       outline: none;
       border: 1px solid var(--border-color);
-      background: rgba(15, 23, 42, 0.5);
+      background: rgba(10, 20, 16, 0.5);
       color: var(--text-primary);
       padding: 0 40px 0 16px;
       font-size: 13px;
@@ -110,8 +110,8 @@ export default {
       }
       &:focus {
         border-color: var(--accent-primary);
-        box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
-        background: rgba(15, 23, 42, 0.7);
+        box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+        background: rgba(10, 20, 16, 0.7);
       }
     }
     img {

@@ -61,7 +61,7 @@ export default {
       let color = "";
       switch (type) {
         case "boolean":
-          color = v ? "#38bdf8" : "#f87171";
+          color = v ? "#10b981" : "#f87171";
           break;
         case "number":
           color = "#fbbf24";
@@ -170,7 +170,7 @@ export default {
   
   .input-parser {
     text-align: start;
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(10, 20, 16, 0.45);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     width: 40%;
@@ -185,14 +185,14 @@ export default {
     
     &:focus {
       border-color: var(--accent-primary);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
     }
   }
   
   .parsing-wrap {
     border: 1px solid var(--border-color);
     width: 60%;
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(10, 20, 16, 0.45);
     height: 100%;
     border-radius: 16px;
     overflow: hidden;
@@ -202,7 +202,7 @@ export default {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
     
     .parsing-header {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(10, 20, 16, 0.85);
       height: 48px;
       padding: 0 20px;
       text-align: left;
