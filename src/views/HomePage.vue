@@ -1,34 +1,5 @@
 <template>
   <div class="page-wrap">
-    <p class="main-tit">Dashboard</p>
-    <div class="blue-wrap shadowBox">
-      <p class="dashboard-blue-title">
-        여러분을 위한 많은 "Utility"가<br />준비되어 있습니다.
-      </p>
-      <img src="../assets/dashboard-img.svg" />
-    </div>
-    <div class="util-dashboard-wrap shadowBox">
-      <div class="post-list-header flexRow">
-        <p class="sub-tit">공지사항</p>
-        <div class="list-length">{{ postList.length }}개</div>
-      </div>
-      <div class="post-list blueScrollBar">
-        <div
-          v-for="(item, idx) in postList"
-          :key="`item-${idx}`"
-          class="post-item"
-          @click="onClickPost(item.path)"
-        >
-          <div class="post-title">
-            {{ item.title }}
-          </div>
-          <div class="post-info flexRow">
-            <div class="post-writer">{{ item.writer }}</div>
-            <div class="post-date">{{ item.date }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
     <p class="main-tit">Utils</p>
     <div v-if="searchUtilList.length" class="util-list-wrap">
       <div
@@ -93,7 +64,6 @@ export default {
   },
   mounted() {
     this.searchUtilList = this.utilList;
-    this.getPosts();
   },
   methods: {
     getIcon(name: string) {
@@ -109,44 +79,11 @@ export default {
         return;
       }
       this.searchUtilList = this.utilList.filter((util: any) =>
-        util.name.toLowerCase().includes(searchValue.toLowerCase())
+        util.name.toLowerCase().includes(searchValue.toLowerCase()),
       );
     },
     onClickUtil(name: any) {
       // MakeToast(`${name}으로 이동했습니다.`, "success", 2000);
-    },
-    async getPosts() {
-      this.loadingHandler(true);
-      let posts = await axios
-        .get(`https://api.github.com/repos/hdomi/util-posts/contents/`)
-        .then((res: any) => {
-          let resData = new Array();
-          resData = res.data;
-          const convertList = new Array();
-          resData.forEach((p: any) => {
-            const name = p.name;
-            const splitName = name.split("-");
-            const date = splitName[2].split(".md")[0];
-            const convert = {
-              title: splitName[0],
-              writer: splitName[1],
-              date: date,
-              path: p.name,
-            };
-            convertList.push(convert);
-          });
-          return convertList;
-        });
-      this.postList = posts;
-      this.loadingHandler(false);
-    },
-    onClickPost(path: string) {
-      this.$router.push({
-        path: `/posting`,
-        query: {
-          mdPath: path,
-        },
-      });
     },
     loadingHandler(value: boolean) {
       this.$emit("loadingHandler", value);
@@ -158,144 +95,120 @@ export default {
 .page-wrap {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 40px;
+  
   .blue-wrap {
     width: 100%;
-    height: 300px;
-    min-height: 300px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    background: rgb(165, 207, 255);
+    height: 200px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(56, 189, 248, 0.2) 100%);
+    border: 1px solid var(--border-color);
     color: #fff;
-    padding: 15px;
+    padding: 30px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
     .dashboard-blue-title {
       text-align: left;
       font-size: 24px;
-      font-weight: bolder;
-      margin: 20px 0 0 20px;
+      font-weight: 800;
+      line-height: 1.4;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     img {
       position: absolute;
-      right: 10px;
-      bottom: -20px;
-      width: 300px;
-      height: 300px;
-      transform: scaleX(-1);
+      right: 20px;
+      bottom: -10px;
+      width: 220px;
+      height: 220px;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
     }
   }
-  align-items: flex-start;
-  .util-dashboard-wrap {
-    width: 100%;
-    background: #fff;
-    border-radius: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 0 15px 15px 15px;
-    .post-list-header {
-      justify-content: space-between;
-      margin: 15px 0;
-      .sub-tit {
-        margin: 0;
-      }
-      .list-length {
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-      }
-    }
 
-    .post-list {
-      width: 100%;
-      height: 170px;
-      background: #f7f6fb;
-      border-radius: 14px;
-      overflow-x: hidden;
-      overflow-y: auto;
-      box-shadow: inset 0px 0px 16px 1px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(5px);
-      transition: box-shadow 0.1s;
-      .post-item {
-        cursor: pointer;
-        width: 100%;
-        padding: 10px 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 16px;
-        border-bottom: 2px solid #fff;
-        color: #333;
-        &:hover {
-          background: #edeaf8;
-        }
-        .post-title {
-          font-weight: bold;
-        }
-        .post-info {
-          font-size: 14px;
-          font-weight: normal;
-          .post-date {
-            margin-left: 20px;
-          }
-        }
-      }
-    }
-  }
   .util-list-wrap {
     width: 100%;
-    gap: 15px;
+    gap: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    
     .no-list {
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 600;
+      color: var(--text-secondary);
+      grid-column: 1 / -1;
+      padding: 40px 0;
+      text-align: center;
     }
+    
     .util-list-item-wrap {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      
       .util-item {
-        background: #fff;
-        padding: 10px;
-        width: 170px;
-        height: 170px;
-        border-radius: 15px;
+        background: var(--bg-panel);
+        border: 1px solid var(--border-color);
+        padding: 24px;
+        border-radius: 16px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        min-height: 190px;
+        height: 100%;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        
         &:hover {
-          outline: 1px solid rgba(9, 119, 234, 0.5); /* outline 효과 추가 (투명한 가상의 테두리) */
+          transform: translateY(-6px);
+          border-color: var(--border-hover);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.15);
+          
+          img {
+            transform: scale(1.08) rotate(3deg);
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
+          }
         }
+        
         img {
-          width: 70px;
-          height: 70px;
+          width: 48px;
+          height: 48px;
+          margin-bottom: 20px;
+          filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.2));
+          transition: all 0.3s ease;
         }
+        
         .item-name {
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 17px;
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 6px;
         }
+        
         .item-desc {
-          font-size: 12px;
-          margin-top: 2px;
+          font-size: 13px;
+          color: var(--text-secondary);
+          line-height: 1.5;
         }
       }
     }
   }
 }
+
 @media (max-width: 480px) {
+  .page-wrap {
+    padding: 20px;
+  }
   .util-list-wrap {
-    display: flex !important;
-    flex-direction: column !important;
-    .util-list-item-wrap {
-      .util-item {
-        width: 100% !important;
-      }
-    }
+    grid-template-columns: 1fr !important;
   }
 }
 </style>

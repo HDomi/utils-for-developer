@@ -45,7 +45,7 @@
             :readonly="pinWidthHeight"
             :class="{ disabled: pinWidthHeight }"
         /></label>
-        <label
+        <label class="flex-row-label"
           ><p class="normal-desc" style="width: 100%">가로세로 비율 고정</p>
           <input v-model="pinWidthHeight" type="checkbox"
         /></label>
@@ -194,10 +194,20 @@ export default {
 <style scoped lang="scss">
 .image-sec {
   width: 100%;
-  height: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+
   .upload-img {
     position: relative;
-    background: #fff;
     width: 100%;
     height: 100%;
     display: flex;
@@ -205,85 +215,143 @@ export default {
     align-items: center;
     justify-content: center;
     img {
-      max-height: 400px;
+      max-height: 360px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     img.del-btn {
       position: absolute;
-      right: 20px;
-      top: 20px;
+      right: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
       cursor: pointer;
+      opacity: 0.8;
+      transition: all 0.2s ease;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
     }
   }
   .file-input-wrapper {
     position: relative;
     overflow: hidden;
-    .blue-btn {
-      margin-top: 15px;
-    }
+    margin-top: 15px;
   }
 }
 .convert-sec {
-  border-radius: 14px;
-  border: 1px solid rgb(107, 176, 255);
-  background: #fff;
-  margin-top: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-top: 24px;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+
   .setting-sec {
-    padding: 10px 20px;
-    width: 300px;
-    height: 100%;
-    align-items: flex-start !important;
-    border-right: 1px solid rgb(107, 176, 255);
+    padding: 24px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    border-right: 1px solid var(--border-color);
+    gap: 16px;
     label {
       display: flex;
-      margin-bottom: 10px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      width: 100%;
+      &.flex-row-label {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        p {
+          margin: 0;
+        }
+        input[type="checkbox"] {
+          width: 16px;
+          height: 16px;
+          accent-color: var(--accent-primary);
+          cursor: pointer;
+        }
+      }
       p {
-        min-width: max-content;
-        margin-right: 10px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 15px;
-        font-weight: bold;
-        color: rgb(107, 176, 255);
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
       }
     }
-    input[type="number"] {
+    input[type="number"], .image-type-selecet {
       border-radius: 10px;
-      padding: 0 15px 0 15px;
+      padding: 0 16px;
       width: 100%;
-      height: 30px;
-      color: rgb(107, 176, 255);
-      font-weight: bold;
-      border: 1px solid rgb(107, 176, 255);
+      height: 38px;
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text-primary);
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      box-sizing: border-box;
+      font-size: 14px;
       &:focus {
-        border: 1px solid rgb(107, 176, 255);
+        border-color: var(--accent-primary);
         outline: none;
       }
       &.disabled {
-        color: #cfcfcf;
-        border: 1px solid #cfcfcf;
+        color: var(--text-secondary);
+        border-color: var(--border-color);
+        background: rgba(255,255,255,0.02);
+        opacity: 0.5;
+        cursor: not-allowed;
       }
     }
     .image-type-selecet {
-      border: 1px solid rgb(107, 176, 255);
-      color: rgb(107, 176, 255);
-      border-radius: 10px;
-      &:focus {
-        border: 1px solid rgb(107, 176, 255);
-        outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px;
+      
+      option {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
       }
     }
   }
   .btn-sec {
-    width: 100%;
-    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    
+    .blue-btn {
+      padding: 12px 30px;
+      font-size: 15px;
+      border-radius: 20px;
+    }
   }
 }
 @media (max-width: 700px) {
+  .convert-sec {
+    flex-direction: column;
+    .setting-sec {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
 }
 </style>

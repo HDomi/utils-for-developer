@@ -36,15 +36,24 @@ export default {
   min-height: min-content !important;
   .about-box {
     width: 100%;
-    height: 100%;
-    background: #fff;
-    border-radius: 14px;
-    padding: 15px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     a {
-      color: blue;
+      color: var(--accent-primary);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      &:hover {
+        text-decoration: underline;
+        color: var(--accent-secondary);
+      }
     }
   }
 }

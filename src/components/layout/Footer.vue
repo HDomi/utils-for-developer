@@ -33,21 +33,26 @@ export default {
   align-items: center;
   width: 100%;
   height: 50px;
-  padding: 5px 15px 5px 15px;
+  padding: 5px 30px;
   z-index: 997;
-  background: #f7f6fb;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
 }
 .footer-title {
-  color: rgb(197, 197, 197);
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 @media (max-width: 510px) {
   .footer-wrap {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    padding: 10px 20px;
+    height: auto;
+    gap: 4px;
   }
   .footer-title {
-    font-size: 13px;
+    font-size: 12px;
     text-align: left;
   }
 }

@@ -53,9 +53,28 @@ export default {
 <style lang="scss" scoped></style>
 <style lang="scss">
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+
+:root {
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-panel: rgba(30, 41, 59, 0.45);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(56, 189, 248, 0.4);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #6366f1;
+  --accent-success: #10b981;
+  --accent-error: #ef4444;
+  --accent-success-bg: rgba(16, 185, 129, 0.15);
+  --accent-error-bg: rgba(239, 68, 68, 0.15);
+  --accent-success-border: rgba(16, 185, 129, 0.4);
+  --accent-error-border: rgba(239, 68, 68, 0.4);
+}
+
 body {
-  background: #f7f6fb;
-  color: #333;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   margin: 0 auto;
   padding: 0;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
@@ -63,7 +82,6 @@ body {
     "Malgun Gothic", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -76,12 +94,12 @@ html {
   width: 100%;
   height: 100%;
 }
-div {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-primary);
 }
 li {
   list-style: none;
@@ -90,13 +108,18 @@ p {
   margin: 0 auto;
   padding: 0;
 }
-input[type="text"] {
+input[type="text"], input[type="number"], textarea, select {
   outline: none;
-  border: none;
-}
-textarea {
-  outline: none;
-  border: none;
+  border: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  &:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+  }
 }
 .hiddenScroll {
   overflow: hidden !important;
@@ -114,43 +137,67 @@ textarea {
 }
 .normal-desc {
   display: block;
-  font-size: 17px;
-  color: #333;
-  font-weight: normal;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 .main-tit {
-  color: #333;
-  font-size: 20px;
-  font-weight: bolder;
-  margin-bottom: 10px;
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 20px;
   display: inline-block;
-  margin: 0 0 15px 0;
-  padding: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .sub-tit {
-  color: #6c6c6c;
+  color: var(--text-secondary);
   font-size: 14px;
-  font-weight: bolder;
+  font-weight: 600;
   margin-bottom: 10px;
   display: inline-block;
-  margin: 0 0 15px 0;
-  padding: 0;
 }
 .shadowBox {
-  box-shadow: 7px 7px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  transition: box-shadow 0.1s;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .blue-btn {
-  border-radius: 14px;
-  background-color: #007bff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-secondary) 0%, #4f46e5 100%);
   color: #fff;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   &:hover {
-    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+    box-shadow: none;
+    color: var(--text-secondary);
   }
 }
 .tryAngle {
@@ -167,21 +214,21 @@ textarea {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(9, 13, 22, 0.7);
+  backdrop-filter: blur(8px);
   width: 100%;
   height: 100%;
-  z-index: 998;
+  z-index: 9999999;
 }
 .loading {
-  z-index: 999;
+  z-index: 10000000;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 9999px;
 }
 .v-fade {
-  background-color: rgb(107, 176, 255) !important;
+  background-color: var(--accent-primary) !important;
 }
 .relative {
   position: relative;
@@ -189,23 +236,26 @@ textarea {
 .page-wrap {
   height: 100%;
   width: 100%;
-  padding: 30px 40px 30px 40px;
-  text-align: center;
-  align-items: center;
+  padding: 30px 40px;
+  text-align: left;
   display: flex;
   flex-direction: column;
   min-height: max-content;
   overflow-y: auto;
+  background: var(--bg-primary);
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 6px;
   }
   &::-webkit-scrollbar-thumb {
-    height: 30%;
-    background: rgb(107, 176, 255);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
+    &:hover {
+      background: var(--accent-primary);
+    }
   }
   &::-webkit-scrollbar-track {
-    background: rgb(234, 249, 255);
+    background: transparent;
   }
 }
 .page-tit-wrap {
@@ -213,38 +263,25 @@ textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 .blueScrollBar::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 .blueScrollBar::-webkit-scrollbar-thumb {
-  height: 30%;
-  background: rgb(107, 176, 255);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
+  &:hover {
+    background: var(--accent-primary);
+  }
 }
 .blueScrollBar::-webkit-scrollbar-track {
-  background: rgb(234, 249, 255);
+  background: transparent;
 }
 .page-wrap-inner {
   width: 100%;
   height: 100%;
-}
-.loading-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.3);
-  width: 100%;
-  height: 100%;
-  z-index: 9999999;
-  .loading {
-    z-index: 999;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 9999px;
-  }
 }
 .App-wrap {
   position: relative;
@@ -252,6 +289,7 @@ textarea {
   height: 100%;
   display: flex;
   flex-direction: row;
+  background: var(--bg-primary);
 }
 .sec-wrap {
   overflow: hidden;
@@ -261,16 +299,17 @@ textarea {
   min-height: max-content;
   display: flex;
   flex-direction: column;
+  background: var(--bg-primary);
 }
 .overHidden {
   overflow: hidden;
 }
-@media (max-width: 1300px) {
-}
-@media (max-width: 1200px) {
-}
-@media (max-width: 900px) {
-}
+@media (max-width: 1300px) {}
+@media (max-width: 1200px) {}
+@media (max-width: 900px) {}
 @media (max-width: 470px) {
+  .page-wrap {
+    padding: 20px;
+  }
 }
 </style>

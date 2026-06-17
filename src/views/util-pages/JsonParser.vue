@@ -55,26 +55,22 @@ export default {
       console.log("click");
     },
     returnSection(v: any) {
-      return `<span style="color: #333">${v}</span>`;
+      return `<span style="color: #94a3b8; font-weight: 500;">${v}</span>`;
     },
     returnValue(v: any, type: any) {
       let color = "";
       switch (type) {
         case "boolean":
-          if (v) {
-            color = "blue";
-          } else {
-            color = "red";
-          }
+          color = v ? "#38bdf8" : "#f87171";
           break;
         case "number":
-          color = "blue";
+          color = "#fbbf24";
           break;
         case "string":
-          color = "green";
+          color = "#34d399";
           break;
       }
-      return `<span class="parse-value" style="color: ${color}">${v}</span>`;
+      return `<span class="parse-value" style="color: ${color}; font-weight: 500;">${v}</span>`;
     },
     getParsing() {
       if (this.inputJson) {
@@ -88,16 +84,16 @@ export default {
             this.jsonToString = this.inputJson;
             parsingObject = JSON.parse(this.inputJson);
           }
-          let parsed = `<span>{</span>`;
+          let parsed = `<span style="color: #94a3b8">{</span>`;
           parsed += this.parseObject(parsingObject, 0, "wrap");
-          parsed += `<span>}</span>`;
+          parsed += `<span style="color: #94a3b8">}</span>`;
 
           return parsed;
         } catch (error) {
-          return `<span>유효하지 않은 데이터입니다.</span>`;
+          return `<span style="color: var(--accent-error)">유효하지 않은 데이터입니다.</span>`;
         }
       } else {
-        return `<span>데이터를 입력해주세요.</span>`;
+        return `<span style="color: var(--text-secondary)">데이터를 입력해주세요.</span>`;
       }
     },
 
@@ -116,7 +112,7 @@ export default {
       const keys = Object.keys(obj);
 
       keys.forEach((key, index) => {
-        parsed += `<span class="parse-key" style="color: #333">"${key}": </span>`;
+        parsed += `<span class="parse-key" style="color: #818cf8; font-weight: 600;">"${key}": </span>`;
 
         const value = obj[key];
 
@@ -165,58 +161,119 @@ export default {
 <style scoped lang="scss">
 .parser-wrap {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 160px);
   flex-direction: row;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  gap: 20px;
+  
   .input-parser {
     text-align: start;
-    background: #fff;
-    width: 36%;
-    border: 1px solid rgb(9, 119, 234);
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 40%;
+    height: 100%;
     resize: none;
+    padding: 20px;
+    font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    
     &:focus {
-      border: 1px solid rgb(0, 67, 138);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
     }
   }
+  
   .parsing-wrap {
-    border: 1px solid rgb(9, 119, 234);
-    width: calc(64% - 30px);
-    background: #fff;
+    border: 1px solid var(--border-color);
+    width: 60%;
+    background: rgba(15, 23, 42, 0.45);
     height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    
     .parsing-header {
-      background: rgb(9, 119, 234);
-      height: 30px;
-      padding: 0 10px;
+      background: rgba(15, 23, 42, 0.85);
+      height: 48px;
+      padding: 0 20px;
       text-align: left;
-      color: #fff;
-      font-weight: bold;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      letter-spacing: -0.2px;
+      
       button {
-        border: none;
-        background: #fff;
-        color: #333;
-        font-weight: bold;
+        border: 1px solid var(--border-color);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-primary);
+        font-weight: 600;
         border-radius: 20px;
-        height: 23px;
+        height: 28px;
+        padding: 0 16px;
         font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: var(--accent-primary);
+        }
       }
     }
+    
     .parsing-sec {
       overflow-y: auto;
-      height: 100%;
+      flex: 1;
       text-align: left;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 10px 10px 100px 10px;
+      padding: 20px;
+      font-family: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        &:hover {
+          background: var(--accent-primary);
+        }
+      }
     }
   }
 }
-@media (max-width: 700px) {
+
+@media (max-width: 900px) {
+  .parser-wrap {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    
+    .input-parser {
+      width: 100%;
+      height: 300px;
+    }
+    .parsing-wrap {
+      width: 100%;
+      height: 400px;
+    }
+  }
 }
 </style>

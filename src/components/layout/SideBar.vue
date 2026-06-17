@@ -61,58 +61,90 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 350px;
+  width: 280px;
+  min-width: 280px;
   height: 100%;
-  background: #0977ea;
-  transition: 0.3s;
+  background: #0b111e;
+  border-right: 1px solid var(--border-color);
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   z-index: 999;
-  overflow-y: hidden;
+  overflow-y: auto;
   align-items: center;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
   img.side-main-icon {
-    width: 150px;
-    margin: 40px 0 50px 0;
+    width: 130px;
+    margin: 30px 0 40px 0;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   .side-item-wrap {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 4px;
+    padding: 0 12px;
     a {
       width: 100%;
       box-sizing: border-box;
-      display: block;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 0 20px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      color: var(--text-secondary);
+      border: 1px solid transparent;
       &:hover {
-        background: #0765c5;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-primary);
+        transform: translateX(4px);
+      }
+      &.router-link-active {
+        background: rgba(99, 102, 241, 0.12);
+        color: var(--text-primary);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        .icon-wrap {
+          background: rgba(99, 102, 241, 0.2);
+          border-color: rgba(99, 102, 241, 0.4);
+          img.side-icon {
+            filter: drop-shadow(0 0 6px var(--accent-primary));
+          }
+        }
       }
       .item-title {
         width: 100%;
-        font-size: 18px;
-        font-weight: bold;
-        color: #fff;
-        height: 50px;
-        line-height: 50px;
+        font-size: 15px;
+        font-weight: 600;
+        height: 46px;
+        line-height: 46px;
         text-align: left;
-        padding: 0 10px;
         display: flex;
         align-items: center;
         .icon-wrap {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background: #fff;
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid var(--border-color);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-right: 15px;
+          margin-right: 12px;
+          transition: all 0.2s ease;
           img.side-icon {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
           }
         }
       }

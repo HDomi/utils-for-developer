@@ -6,9 +6,10 @@ import { defineConfig, loadEnv } from "vite";
 import { fileURLToPath, URL } from "node:url";
 
 // https://vitejs.dev/config/
-export default (mode: any) =>
-  defineConfig({
-    base: "",
+export default ({ mode }: any) => {
+  const env = loadEnv(mode, process.cwd(), "");
+  return defineConfig({
+    base: mode === "production" ? "/utils/" : "/",
     build: {
       chunkSizeWarningLimit: 3000, // Set the limit to a higher value (in KiB)
       rollupOptions: {
@@ -30,7 +31,7 @@ export default (mode: any) =>
         autoImport: true,
       }),
     ],
-    define: { "process.env": loadEnv(mode, process.cwd(), "") },
+    define: { "process.env": env },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -41,3 +42,4 @@ export default (mode: any) =>
       port: 3000,
     },
   });
+};
