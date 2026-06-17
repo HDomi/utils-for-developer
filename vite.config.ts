@@ -9,7 +9,7 @@ import { fileURLToPath, URL } from "node:url";
 export default ({ mode }: any) => {
   const env = loadEnv(mode, process.cwd(), "");
   return defineConfig({
-    base: mode === "production" ? "/utils/" : "/",
+    base: mode === "production" ? "/utils-for-developer/" : "/",
     build: {
       chunkSizeWarningLimit: 3000, // Set the limit to a higher value (in KiB)
       rollupOptions: {
